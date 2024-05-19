@@ -5,7 +5,7 @@ interface Post {
   title: string;
 }
 
-export const postFields = 'id,slug,title,tags,excerpt,image,updated_at,draft,featured';
+export const postFields = 'id,slug,title,tags,excerpt,image,created_at,draft,featured';
 
 export const usePostStore = defineStore('post', () => {
   const auth = useAuthStore();
@@ -65,7 +65,7 @@ export const usePostStore = defineStore('post', () => {
       .order('featured', {
         ascending: false,
       })
-      .order('updated_at', {
+      .order('created_at', {
         ascending: false,
       })
       .range(start, start + (blog.pageSize ?? 50) - 1);

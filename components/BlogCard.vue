@@ -51,7 +51,7 @@ function gotoTag(tag: string) {
           {{ data.profile.display_name }}
         </q-tooltip>
       </q-avatar>
-      <div class="text-caption">{{ formatDate(data.updated_at) }}</div>
+      <div class="text-caption">{{ formatDate(data.created_at) }}</div>
       <q-space />
       <q-btn v-if="isLogin" size="12px"
         flat dense round

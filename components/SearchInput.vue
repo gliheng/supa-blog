@@ -5,7 +5,7 @@ interface Option {
   id: number;
   title: string;
   slug: string;
-  updated_at: string;
+  created_at: string;
 }
 
 const search = ref('')
@@ -31,7 +31,7 @@ const query = debounce((val) => {
   abortController = new AbortController();
     supa.rpc('search_post', {
       key: val,
-    }).select('id,slug,title,updated_at')
+    }).select('id,slug,title,created_at')
       .abortSignal(abortController.signal)
       .then(({ data }) => {
         if (data) {
@@ -116,7 +116,7 @@ function go(opt: Option) {
             <q-item-section sdie>
               <q-item-label
                 caption
-                v-html="formatDate(opt.updated_at)"
+                v-html="formatDate(opt.created_at)"
               />
             </q-item-section>
           </q-item>

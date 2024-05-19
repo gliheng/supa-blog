@@ -78,14 +78,14 @@ async function process(file: string) {
     const newPost = {
       title: post.title,
       slug: post.slug,
-      draft: false,
+      draft: post.visibility != 'public',
       image: post.feature_image,
       featured: !!post.featured,
       content: post.mobiledoc,
       format: 'mobiledoc',
       tags,
-      updated_at: formatTime(post.updated_at),
       created_at: formatTime(post.created_at),
+      updated_at: formatTime(post.updated_at),
       html: post.html,
       excerpt: post.plaintext?.substring(0, 500),
     };
@@ -122,6 +122,7 @@ interface Post {
   created_at: string;
   updated_at: string;
   featured: number;
+  visibility: string;
   feature_image: string;
 }
 

@@ -25,7 +25,7 @@ const image = ref<string | null | undefined>();
 
 const slug = ref();
 const excerpt = ref();
-const updatedAt = ref();
+const createdAt = ref();
 
 const editingEnabled = computed(() => {
   return !editMode.value || props.edit?.format == 'editorjs';
@@ -40,7 +40,7 @@ function reset() {
   image.value = post?.image ?? undefined;
   slug.value = post?.slug ?? undefined;
   excerpt.value = post?.excerpt ?? undefined;
-  updatedAt.value = post?.updated_at ?? undefined;
+  createdAt.value = post?.created_at ?? undefined;
 }
 
 watch(show, async (show) => {
@@ -122,7 +122,6 @@ async function sendPost() {
     image: image.value,
     slug: slug.value || genSlug(title.value),
     excerpt: excerpt.value || genExcerpt(html, 500),
-    updated_at: updatedAt.value,
     content,
     html,
   };
@@ -135,6 +134,7 @@ async function sendPost() {
   } else {
     fn = 'create_post';
     row.format = 'editorjs';
+    row.created_at = createdAt.value;
   }
   const { data, error } = await supa.rpc(fn, { rec: row, id: props.edit?.id })
     .select(postFields)
@@ -308,7 +308,7 @@ function deletePost() {
                               dense
                             />
                             <DateInput
-                              v-model="updatedAt"
+                              v-model="createdAt"
                               label="Update time"
                               filled
                               dense

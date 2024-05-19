@@ -125,7 +125,7 @@ function onContentClick(evt: MouseEvent) {
         </q-avatar>
         <span>{{ post.profile.display_name }}</span>
       </div>
-      <time class="text-caption">{{ formatDate(post.updated_at) }}</time>
+      <time class="text-caption">{{ formatDate(post.created_at) }}</time>
     </div>
     <main
       ref="contentRef"
