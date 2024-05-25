@@ -1,10 +1,8 @@
 <script lang="ts" setup>
-
 const auth = useAuthStore();
 onMounted(() => {
   auth.restore();
 });
-
 </script>
 
 <template>
@@ -23,15 +21,4 @@ onMounted(() => {
   </NuxtLayout>
 </template>
 
-<style>
-:root {
-  --affine-z-index-popover: 10000 !important;
-}
-a {
-  color: var(--q-primary);
-  text-decoration: none;
-}
-a:link:hover {
-  text-decoration: underline;
-}
-</style>
+<style lang="scss" src="/assets/style.scss"></style>

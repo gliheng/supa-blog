@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import genSlug from 'slug';
-import editorParser from 'editorjs-parser';
 import { omitBy, isUndefined } from 'lodash-es';
 import Editor from '@/components/Editor';
 
@@ -101,8 +100,6 @@ function filterFn(val, update) {
 }
 
 const $q = useQuasar();
-const parser = new editorParser();
-
 async function sendPost() {
   if (loading.value) {
     $q.notify({
@@ -112,8 +109,7 @@ async function sendPost() {
     return;
   }
 
-  const content = (await editor.value?.getData()) ?? '';
-  const html = parser.parse(content);
+  const { content, html } = (await editor.value?.getData()) ?? '';
   const row: Record<string, any> = {
     title: title.value,
     draft: draft.value,

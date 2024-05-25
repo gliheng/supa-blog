@@ -13,14 +13,23 @@ import Warning from '@editorjs/warning';
 import Delimiter from '@editorjs/delimiter';
 import Link from '@editorjs/link';
 import Embed from '@editorjs/embed';
-import Code from '@editorjs/code';
 import InlineCode from '@editorjs/inline-code';
 import Checklist from '@editorjs/checklist';
 import Marker from '@editorjs/marker';
+import CodeBox from '@bomdi/codebox';
+import editorParser from 'editorjs-parser';
+
+const parser = new editorParser({}, {
+  codeBox({ code, language }, config) {
+    return `<div class="code-box" data-language="${language}"><div class="hljs"><pre>${code}</pre></div></div>`;
+  },
+});
 
 const supa = useSupabase();
 
 const elRef = ref();
+const $q = useQuasar();
+
 let editor, pickupData;
 onMounted(() => {
   editor = new EditorJS({
@@ -30,6 +39,12 @@ onMounted(() => {
       header: Header,
       list: List,
       table: Table,
+      codeBox: {
+        class: CodeBox,
+        config: {
+          useDefaultTheme: $q.dark.isActive ? 'dark' : 'light',
+        },
+      },
       image: {
         class: Image,
         config: {
@@ -41,7 +56,6 @@ onMounted(() => {
       },
       checklist: Checklist,
       quote: Quote,
-      code: Code,
       warning: Warning,
       marker: Marker,
       inlineCode: InlineCode,
@@ -65,8 +79,12 @@ onMounted(() => {
 
 defineExpose({
   async getData() {
-    const saved = await editor.save();
-    return saved;
+    const data = await editor.save();
+    const html = parser.parse(data);
+    return {
+      content: data,
+      html,
+    };
   },
   setData(data: { content: string }) {
     if (editor.render) {

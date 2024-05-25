@@ -1,0 +1,16 @@
+:root {
+  --affine-z-index-popover: 10000 !important;
+}
+a {
+  color: var(--q-primary);
+  text-decoration: none;
+}
+a:link:hover {
+  text-decoration: underline;
+}
+
+.code-box .hljs > pre {
+  margin: 0;
+}
+@import url(./atom-one-light.scss);
+@import url(./atom-one-dark.scss);

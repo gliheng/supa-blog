@@ -5,7 +5,7 @@ interface Post {
   title: string;
 }
 
-export const postFields = 'id,slug,title,tags,excerpt,image,created_at,draft,featured';
+export const postFields = 'id,slug,title,tags,excerpt,image,created_at,draft,featured,format';
 
 export const usePostStore = defineStore('post', () => {
   const auth = useAuthStore();
