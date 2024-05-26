@@ -1,10 +1,16 @@
 <template>
-  <q-card>
+  <q-card v-if="store.postList?.length">
     <q-card-section class="q-pb-none">
       <div class="text-overline text-uppercase">Featured</div>
     </q-card-section>
-    <div v-for="(post, i) of store.postList" :key="post.id">
-      <q-card-section>
+    <div v-for="(post, i) of store.postList" :key="post.id" class="featured-list-item">
+      <div class="focus-helper"></div>
+      <q-card-section vertical>
+        <q-img
+          class="feature-img q-mb-sm"
+          v-if="post.image"
+          :src="post.image"
+        />
         <NuxtLink class="text-h5 q-mt-sm q-mb-xs" :to="`/${post.slug}`">{{ post.title }}</NuxtLink>
         <p class="excerpt">{{ post.excerpt }}</p>
         <div class="row items-center q-gutter-x-sm">
@@ -32,17 +38,25 @@
 <script lang="ts" setup>
 const auth = useAuthStore();
 const { isLogin } = storeToRefs(auth);
+const editAction = inject('edit-action');
 
 const store = useFeaturedPostsStore();
-const fetchAction = store.fetch();
-if (process.server) {
-  await fetchAction;
-}
-
-const editAction = inject('edit-action');
+await store.fetch();
 </script>
 
 <style lang="sass" scoped>
+.featured-list-item
+  position: relative
+  .feature-img
+    max-height: 200px
+    object-fit: cover
+    object-position: top
+  &:hover .focus-helper
+    position: absolute
+    inset: 0
+    background: currentColor
+    opacity: .1
+    pointer-events: none
 .excerpt
   overflow: hidden
   display: -webkit-box

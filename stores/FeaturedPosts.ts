@@ -39,6 +39,7 @@ export const useFeaturedPostsStore = defineStore('featured-posts', () => {
     const ori = postList.value?.find((e) => e.id == post.id);
     if (ori) {
       Object.assign(ori, post);
+      return true;
     }
   }
 

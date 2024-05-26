@@ -16,6 +16,7 @@ function onLogout() {
 }
 
 const store = usePostsStore();
+const featuredStore = useFeaturedPostsStore();
 const showPostDialog = ref(false);
 const editPost = ref<Post>();
 provide('edit-action', {
@@ -30,15 +31,21 @@ provide('edit-action', {
 });
 
 function onAdd(post: Post) {
-  store.fetch();
+  if (!featuredStore.update(post)) {
+    store.fetch();
+  }
 }
 
 function onEdit(post: Post) {
-  store.update(post);
+  if (!featuredStore.update(post)) {
+    store.update(post);
+  }
 }
 
 function onDelete(post: Post) {
-  store.fetch();
+  if (!featuredStore.update(post)) {
+    store.fetch();
+  }
 }
 </script>
 

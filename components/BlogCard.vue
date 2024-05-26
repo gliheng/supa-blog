@@ -20,16 +20,16 @@ const editAction = inject('edit-action');
 
 <template>
   <q-card
-    class="column"
+    class="column blog-card"
     :data-card-type="data.image ? 'image' : 'text'"
   >
+    <div class="focus-helper"></div>
     <img
       v-if="data.image"
       class="feature-img"
       :src="data.image"
     />
     <q-card-section class="col">
-      <div class="text-overline" v-if="data.featured">Featured</div>
       <NuxtLink class="text-h6" :to="`/${data.slug}`">{{ data.title }}</NuxtLink>
       <p class="excerpt">{{ data.excerpt }}</p>
       <div class="tag-list" v-if="data.tags?.length > 0">
@@ -73,4 +73,12 @@ const editAction = inject('edit-action');
   object-position: top
 p.excerpt
   word-break: break-all
+.blog-card
+  position: relative
+  &:hover .focus-helper
+    position: absolute
+    inset: 0
+    background: currentColor
+    opacity: .1
+    pointer-events: none
 </style>

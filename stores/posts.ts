@@ -87,13 +87,14 @@ export const usePostsStore = defineStore('posts', () => {
   }
 
   async function fetchMore() {
-    await fetch(postList.value.length);
+    await fetch(postList.value?.length ?? 0);
   }
 
   async function update(post: Post) {
     const ori = postList.value?.find((e) => e.id == post.id);
     if (ori) {
       Object.assign(ori, post);
+      return true;
     }
   }
 
