@@ -119,12 +119,13 @@ function onContentClick(evt: MouseEvent) {
       {{ post.title }}
     </h1>
     <div class="row items-center q-gutter-x-sm">
-      <div>
-        <q-avatar size="30px">
-          <img :src="post.profile.avatar ?? '/user.png'">
-        </q-avatar>
-        <span>{{ post.profile.display_name }}</span>
-      </div>
+      <q-avatar size="30px">
+        <img :src="post.profile.avatar ?? '/user.png'">
+        <q-tooltip v-if="post.profile.display_name">
+          {{ post.profile.display_name }}
+        </q-tooltip>
+      </q-avatar>
+      <span>{{ post.profile.display_name }}</span>
       <time class="text-caption">{{ formatDate(post.created_at) }}</time>
     </div>
     <main

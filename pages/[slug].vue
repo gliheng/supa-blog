@@ -11,7 +11,7 @@ function showEditPost(post) {
   editPost.value = post;
 }
 
-const store = usePostStore();
+const store = usePostsStore();
 const blogPost = ref();
 const router = useRouter();
 function onEdit(blog) {

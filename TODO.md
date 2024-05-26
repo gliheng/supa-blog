@@ -4,8 +4,8 @@
 [x] Publish may need to use serverless api to ensure safety
 [x] Data transfer from ghost
 [x] Code highlight
+[x] Move featured post to a seperate list 
 [ ] Custom frontpage design
-[ ] Move featured post to a seperate list 
 [ ] Deploy on vercel
 
 # Bug

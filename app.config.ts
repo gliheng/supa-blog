@@ -16,6 +16,6 @@ export default defineAppConfig({
         url: 'https://github.com/gliheng',
       },
     ],
-    pageSize: 50,
+    pageSize: 10,
   },
 });

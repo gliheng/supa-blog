@@ -1,14 +1,13 @@
 import { defineStore } from 'pinia';
 
-interface Post {
+export interface Post {
   id: number;
   title: string;
 }
 
 export const postFields = 'id,slug,title,tags,excerpt,image,created_at,draft,featured,format';
 
-export const usePostStore = defineStore('post', () => {
-  const auth = useAuthStore();
+export const usePostsStore = defineStore('posts', () => {
   const supa = useSupabase();
   const { blog } = useAppConfig();
   const opts = ref<{
@@ -47,6 +46,7 @@ export const usePostStore = defineStore('post', () => {
           head: true,
           count: 'exact',
         } : undefined)
+        .eq('featured', false);
       const { type, tag } = opts.value ?? {};
       if (type == 'draft') {
         q = q.eq('draft', true);
@@ -62,9 +62,6 @@ export const usePostStore = defineStore('post', () => {
     pending.value = true;
     
     const { data, error: err } = await query()
-      .order('featured', {
-        ascending: false,
-      })
       .order('created_at', {
         ascending: false,
       })

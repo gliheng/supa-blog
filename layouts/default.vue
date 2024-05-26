@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 const showLogin = ref(false);
 
 const blogConfig = useAppConfig().blog;
@@ -13,6 +13,32 @@ function onShowProfile() {
 
 function onLogout() {
   const { error } = auth.logout();
+}
+
+const store = usePostsStore();
+const showPostDialog = ref(false);
+const editPost = ref<Post>();
+provide('edit-action', {
+  create() {
+    showPostDialog.value = true;
+    editPost.value = undefined;
+  },
+  edit(post: Post) {
+    showPostDialog.value = true;
+    editPost.value = post;
+  },
+});
+
+function onAdd(post: Post) {
+  store.fetch();
+}
+
+function onEdit(post: Post) {
+  store.update(post);
+}
+
+function onDelete(post: Post) {
+  store.fetch();
 }
 </script>
 
@@ -94,6 +120,15 @@ function onLogout() {
   </q-layout>
   <LoginDialog v-model="showLogin" />
   <ProfileDialog v-model="showProfile" />
+  <ClientOnly>
+    <EditorDialog
+      v-model="showPostDialog"
+      :edit="editPost"
+      @add="onAdd"
+      @edit="onEdit"
+      @delete="onDelete"
+    />
+  </ClientOnly>
 </template>
 
 <style lang="sass" scoped>

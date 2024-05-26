@@ -6,8 +6,6 @@ defineProps({
   },
 });
 
-defineEmits(['edit']);
-
 const auth = useAuthStore();
 const { isLogin } = storeToRefs(auth);
 
@@ -16,6 +14,8 @@ const router = useRouter();
 function gotoTag(tag: string) {
   router.push(`/tag/${tag}`);
 }
+
+const editAction = inject('edit-action');
 </script>
 
 <template>
@@ -56,7 +56,7 @@ function gotoTag(tag: string) {
       <q-btn v-if="isLogin" size="12px"
         flat dense round
         icon="edit"
-        @click.stop="$emit('edit', data)"
+        @click.stop="editAction.edit(data)"
       />
     </q-card-actions>
   </q-card>    

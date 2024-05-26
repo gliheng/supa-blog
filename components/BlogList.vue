@@ -2,8 +2,6 @@
 defineProps({
   data: Array as PropType<Record<string, any>[]>,
 });
-
-defineEmits(['edit']);
 </script>
 
 <template>
@@ -12,7 +10,6 @@ defineEmits(['edit']);
       v-for="post in data"
       :key="post.id"
       :data="post"
-      @edit="$emit('edit', $event)"
     />
   </main>
 </template>

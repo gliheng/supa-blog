@@ -16,5 +16,5 @@ const type = ref('published');
       ]"
     />
   </div>
-  <BlogListPage :type="type" />
+  <BlogListPage :type="type" show-featured />
 </template>
