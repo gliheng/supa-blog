@@ -10,9 +10,6 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@blocksuite/blocks": "0.14.0-canary-202404191836-0a00322",
-    "@blocksuite/presets": "0.14.0-canary-202404191836-0a00322",
-    "@blocksuite/store": "0.14.0-canary-202404191836-0a00322",
     "@bomdi/codebox": "^2.0.0",
     "@editorjs/checklist": "^1.6.0",
     "@editorjs/delimiter": "^1.4.0",
