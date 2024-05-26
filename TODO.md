@@ -3,9 +3,10 @@
 [x] Full text search
 [x] Publish may need to use serverless api to ensure safety
 [x] Data transfer from ghost
+[x] Code highlight
+[ ] Custom frontpage design
+[ ] Move featured post to a seperate list 
 [ ] Deploy on vercel
-[ ] Code highlight
-[ ] Themable
 
 # Bug
 [x] Reset post form after sent

@@ -35,6 +35,8 @@ async function process(file: string) {
 
   const supabase = createClient(`https://${project}.supabase.co`, anon);
   
+  console.log('Logging in as', email);
+
   const { data: userData, error } = await supabase.auth.signInWithPassword({
     email,
     password,
@@ -43,6 +45,8 @@ async function process(file: string) {
   if (error) {
     throw error.message;
   }
+
+  console.log('Logged in');
 
   const imageMap = await uploadImages(supabase, imageSet);
   

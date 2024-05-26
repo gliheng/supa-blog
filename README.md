@@ -6,24 +6,28 @@ A blog app using supabase as backend.
 
 1. Register a supabase account
 2. Create database using sql provided
-3. Create a user usiing supabase Authentication panel
-4. Modify supabase config in `app.config.ts`
-5. Deploy to vercel
+3. Create a public bucket named `uploads` and create a policy to allow authenticated user to select/insert/update/delete for that bucket
+4. Get project ref and anon key and put them in supabase config in `app.config.ts`
+5. Deploy this project on deno or vercel
 
 ## Development
 
-### Make sure to install the dependencies:
+### Setup
+
+Make sure to install the dependencies:
 
 ```bash
 # pnpm
 pnpm install
 ```
 
-### Start the development server on `http://localhost:3000`:
+### Development Server
+
+Start the development server on `http://localhost:3000`:
 
 ```bash
 # pnpm
-pnpm dev
+pnpm run dev
 ```
 
 ### Production
@@ -32,14 +36,14 @@ Build the application for production:
 
 ```bash
 # pnpm
-pnpm build
+pnpm run build
 ```
 
 Locally preview production build:
 
 ```bash
 # pnpm
-pnpm preview
+pnpm run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

@@ -31,7 +31,7 @@ function gotoTag(tag: string) {
     <q-card-section class="col">
       <div class="text-overline" v-if="data.featured">Featured</div>
       <NuxtLink class="text-h6" :to="`/${data.slug}`">{{ data.title }}</NuxtLink>
-      <p>{{ data.excerpt }}</p>
+      <p class="excerpt">{{ data.excerpt }}</p>
       <div class="tag-list" v-if="data.tags?.length > 0">
         <q-chip
           v-for="tag of data.tags"
@@ -70,5 +70,7 @@ function gotoTag(tag: string) {
 .feature-img
   max-height: 200px
   object-fit: cover
-  object-position: center
+  object-position: top
+p.excerpt
+  word-break: break-all
 </style>
